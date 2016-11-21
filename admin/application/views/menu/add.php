@@ -1,5 +1,4 @@
 <?php
-
 if($action_id!="") {
     $action_head= "Edit Menu";
 } else {
@@ -34,8 +33,6 @@ $this->load->view('template/header');
                     <input type="text" name="menu_name" class="form-control" id="menu_name" value="<?php echo set_value('menu_name',$form_data['menu_name']); ?>">
                     <?php if(form_error('menu_name')) {
                         echo form_error('menu_name');
-                    }if($page_error!="") { 
-                        echo '<span class="warningerror">'.$page_error.'</span>';
                     } ?>
                 </div>
             </div>
@@ -47,9 +44,7 @@ $this->load->view('template/header');
                     <input type="text" name="menu_price" class="form-control" id="menu_price" value="<?php echo set_value('menu_price',$form_data['menu_price']); ?>">
                     <?php if(form_error('menu_price')) {
                         echo form_error('menu_price');
-                    } if($page_error!="") { 
-                        echo '<span class="warningerror">'.$page_error.'</span>';
-                    }?>
+                    } ?>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -60,9 +55,7 @@ $this->load->view('template/header');
                     <input type="text" name="menu_calories" class="form-control" id="menu_calories" value="<?php echo set_value('menu_calories',$form_data['menu_calories']); ?>">
                     <?php if(form_error('menu_calories')) {
                         echo form_error('menu_calories');
-                    }if($page_error!="") { 
-                        echo '<span class="warningerror">'.$page_error.'</span>';
-                    }?> 
+                    } ?>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -73,9 +66,7 @@ $this->load->view('template/header');
                     <textarea name="menu_description" class="form-control" id="menu_description"><?php echo set_value('menu_description',$form_data['menu_description']); ?></textarea>
                     <?php if(form_error('menu_description')) {
                         echo form_error('menu_description');
-                    } if($page_error!="") { 
-                        echo '<span class="warningerror">'.$page_error.'</span>';
-                    }?>
+                    } ?>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -99,6 +90,7 @@ $this->load->view('template/header');
                 <div class="col-sm-10">
                     <img src="<?php echo assert_path.'../asset/menu/'.$form_data['menu_image'];?>" class="img-thumbnail" style="max-height: 100px;">
                 </div>
+                <div class="clearfix"></div>
             <?php } ?>
 
             <div class="text-right">

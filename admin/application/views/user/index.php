@@ -51,7 +51,7 @@ if($this->session->flashdata('fail_msg')) {
                                     <td><?php echo $l['user_email']; ?></td>
                                     <td><?php echo $l['user_phone']; ?></td>
                                     <td>
-                                        <a class="btn btn-xs btn-default" href="<?php echo assert_path; ?>user/edit/<?php echo $l['user_id']; ?>">Edit</a>
+                                        <a class="btn btn-xs btn-default" href="<?php echo base_url(); ?>user/edit/<?php echo $l['user_id']; ?>">Edit</a>
                                     </td>
                                 </tr>
                             <?php 

@@ -9,6 +9,10 @@ class Common extends CI_Controller {
 		if(!$this->session->has_userdata('ci_userid')){
 			redirect(base_url().'login');
 		}
+
+		$this->loggedin_userid=$this->session->has_userdata('ci_userid');
+		$this->baseurl = $this->data['baseurl'] = base_url();
+		$this->assert_path = $this->data['assert_path'] = assert_path;
 	}
 	
 }

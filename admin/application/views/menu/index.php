@@ -57,7 +57,8 @@ if($this->session->flashdata('fail_msg')) {
                                     <td><?php echo $l['description']; ?></td>
                                     <td><?php echo $l['calories']; ?></td>
                                     <td>
-                                        <a class="btn btn-xs btn-default" href="<?php echo assert_path; ?>menu/edit/<?php echo $l['menu_id']; ?>">Edit</a>
+                                        <a class="btn btn-xs btn-primary" href="<?php echo base_url(); ?>menu/edit/<?php echo $l['menu_id']; ?>">Edit</a>
+                                        <a class="btn btn-xs btn-default" onclick="return menu_delete_action()" href="<?php echo base_url(); ?>menu/delete/<?php echo $l['menu_id']; ?>">Delete</a>
                                     </td>
                                 </tr>
                             <?php 
@@ -88,7 +89,16 @@ $(document).ready(function() {
     $('.dataTables-menu').DataTable({
         responsive: true
     });
+
 });
+
+function menu_delete_action(){
+    var  c=confirm('Are You Sure Want to Delete!');
+    if(c==true){
+        return true;
+    }
+    return false;
+}
 </script>
 
 

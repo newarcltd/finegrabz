@@ -8,7 +8,7 @@ class Menu extends Common {
 	public function __construct() {
 		parent::__construct();
 
-		$this->load->model('Menu_model','menu_model');
+		$this->load->model('Menu_modal','menu_modal');
 
 		$this->data['baseurl']=base_url();
 		$this->upload_filename="";
@@ -19,7 +19,7 @@ class Menu extends Common {
 	
 	public function index() {
 
-		$this->data['menu_list']=$this->menu_model->get_menu_list();
+		$this->data['menu_list']=$this->menu_modal->get_menu_list();
 
 		$this->load->view('menu/index',$this->data);
 	}
@@ -39,8 +39,8 @@ class Menu extends Common {
         // form validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('menu_name', 'Menu Name', 'trim|required');
-		$this->form_validation->set_rules('menu_price', 'Price', 'trim|required|regex_match[/^[0-9]/]');
-		$this->form_validation->set_rules('menu_calories', 'Calories', 'trim|required|regex_match[/^[0-9]/]');
+		$this->form_validation->set_rules('menu_price', 'Price', 'trim|required');
+		$this->form_validation->set_rules('menu_calories', 'Calories', 'trim|required');
 		$this->form_validation->set_rules('menu_description', 'Description', 'trim|required');
         $this->form_validation->set_rules('menu_image', 'Image', 'callback_menu_image_upload');
 
@@ -48,7 +48,7 @@ class Menu extends Common {
 
 		if ($this->form_validation->run() == true) {
 
-            $action=$this->menu_model->add_menu_item($this->upload_filename);
+            $action=$this->menu_modal->add_menu_item($this->upload_filename);
             if($action==true){
                 $this->session->set_flashdata('success_msg', 'Successfully Saved');
             } else {
@@ -71,7 +71,7 @@ class Menu extends Common {
             $this->data['action_id']=$id;
             $this->data['page_error']=$this->page_error;
 
-            $original_details=$this->menu_model->menu_item_details($id);
+            $original_details=$this->menu_modal->menu_item_details($id);
             if(count($original_details)==0){
                 // exit if details not found
                 redirect(base_url().'menu');
@@ -87,8 +87,8 @@ class Menu extends Common {
             // form validation
             $this->load->library('form_validation');
             $this->form_validation->set_rules('menu_name', 'Menu Name', 'trim|required');
-            $this->form_validation->set_rules('menu_price', 'Price', 'trim|required|regex_match[/^[0-9]/]');
-            $this->form_validation->set_rules('menu_calories', 'Calories', 'trim|required|regex_match[/^[0-9]/]');
+            $this->form_validation->set_rules('menu_price', 'Price', 'trim|required');
+            $this->form_validation->set_rules('menu_calories', 'Calories', 'trim|required');
             $this->form_validation->set_rules('menu_description', 'Description', 'trim|required');
 
             $this->form_validation->set_error_delimiters('<span class="warningerror">', '</span>');
@@ -103,7 +103,7 @@ class Menu extends Common {
                     }
                 }
 
-                $action=$this->menu_model->edit_menu_item($this->upload_filename,$id);
+                $action=$this->menu_modal->edit_menu_item($this->upload_filename,$id);
                 if($action==true){
                     $this->session->set_flashdata('success_msg', 'Edited Successfully');
                 } else {
@@ -149,6 +149,18 @@ class Menu extends Common {
         	$this->upload_filename=$this->upload->data()['file_name'];
             return true;
         }
+    }
+
+
+    public function delete($id=0){
+        $id=intval($id);
+        $update=$this->menu_modal->delete_menu($id);
+        if($update==true){
+            $this->session->set_flashdata('success_msg', 'Deleted Successfully');
+        } else {
+            $this->session->set_flashdata('fail_msg', 'Failed. Try Again!');
+        }
+        redirect(base_url().'menu');
     }
 
 }

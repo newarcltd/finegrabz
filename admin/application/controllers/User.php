@@ -111,31 +111,5 @@ class User extends Common {
         }
     }
 
-	/* function menu_image_upload() {
-
-		if(!isset($_FILES['menu_image']['name']) || $_FILES['menu_image']['name']==""){
-			$this->form_validation->set_message('menu_image_upload', 'The image field is required');
-        	return false;
-		}
-
-    	$config['upload_path']   = '../asset/menu/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size']      = 1000;
-        $config['file_name']    = strtotime(date('YmdHis')).'_'.rand(99,999);
-        // $config['max_width']   = 1024;
-        // $config['max_height']  = 768;
-
-        $this->load->library('upload', $config);
-
-        if ( ! $this->upload->do_upload('menu_image')) {
-            $this->page_error=$this->upload->display_errors();
-        	$this->form_validation->set_message('menu_image_upload', $this->upload->display_errors());
-        	return false;
-        } else {
-        	// set uploaded file name
-        	$this->upload_filename=$this->upload->data()['file_name'];
-            return true;
-        }
-    } */
 
 }
